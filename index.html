@@ -278,6 +278,16 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       document.body.style.touchAction = 'manipulation';
+
+      // Auto-open the gift after N seconds (will play animation then redirect).
+      // Change this value to adjust the wait time (seconds).
+      const AUTO_REDIRECT_SECONDS = 3;
+      setTimeout(() => {
+        // Only auto-open if user hasn't already started interaction and the gift isn't open.
+        if (!isAnimating && !container.classList.contains('open')) {
+          openGift();
+        }
+      }, AUTO_REDIRECT_SECONDS * 1000);
     });
 
     clickArea.addEventListener('pointerdown', (e) => {
